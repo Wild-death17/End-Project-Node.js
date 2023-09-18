@@ -6,13 +6,12 @@ CREATE TABLE `Employees` (
 );
 
 CREATE TABLE `Work_Hours` (
-	`Employee_id` INT NOT NULL UNIQUE,
+	`Shift_id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`Employee_id` INT NOT NULL,
 	`Employee_Name` VARCHAR(255) NOT NULL,
-	`Clock_in` DATE NOT NULL,
-	`Clock_out` DATE NOT NULL
+	`Clock_in` TIME NOT NULL,
+	`Clock_out` TIME,
+	PRIMARY KEY (`Shift_id`)
 );
 
 ALTER TABLE `Work_Hours` ADD CONSTRAINT `Work_Hours_fk0` FOREIGN KEY (`Employee_id`) REFERENCES `Employees`(`Employee_Id`);
-
-
-
