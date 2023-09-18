@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const genParam = require("./Gen-Params");
+const genParam = require('./Gen-Params');
 //------------------------------------------------
 let HOST = genParam.HOST;
 let USER = genParam.USER;
