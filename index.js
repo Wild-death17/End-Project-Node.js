@@ -9,15 +9,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.set('view engine', 'ejs');
 app.use(express.json());
 //------------------------------------------------
-app.use(express.static(path.join(__dirname, 'Public')));
-//------------------------------------------------
-app.use(express.static(path.join(__dirname, 'Css')));
-//------------------------------------------------
-app.use(express.static(path.join(__dirname, 'JavaS')));
-//------------------------------------------------
 app.use(express.static(path.join(__dirname, 'Routs')));
 //------------------------------------------------
 app.use(express.static(path.join(__dirname, 'Views')));
+//------------------------------------------------
+app.use(express.static(path.join(__dirname, 'Public/Css')));
+//------------------------------------------------
+app.use(express.static(path.join(__dirname, 'Public/JavaS')));
 //------------------------------------------------
 app.use(express.static(path.join(__dirname, 'Data-Base-SQL')));
 //------------------------------------------------
