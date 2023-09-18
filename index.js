@@ -24,7 +24,12 @@ app.use(express.static(path.join(__dirname, "Data-Base-SQL")));
 let DataBase_Model = require("Data-Base-SQL/Data-Base");
 global.DataBase_Pool = DataBase_Model.pool;
 //------------------------------------------------
-
+const Page_rt = require('./Routs/Pages');
+const Employees_rt = require('./Routs/Employees');
+const Work_Hours_rt = require('./Routs/Work_Hours');
+app.use('/', Page_rt);
+app.use('/Employees', Employees_rt);
+app.use('/Work_Hours', Work_Hours_rt);
 //------------------------------------------------
 
 //------------------------------------------------
