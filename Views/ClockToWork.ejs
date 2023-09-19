@@ -1,4 +1,16 @@
 <%- include("PageTop.ejs") %>
-Hello World!
+<center>
+    <h1>Hello World!</h1>
+    <br>
+    <select name="Employee_Id" id="Employee_Id">
+        <option disabled selected value="0">Select Employee</option>
+    </select>
+    <br>
+    <div id="clock">
+    </div>
+    <br>
+    <button onclick="ClockToWork(true)">Clock In</button>
+    <button onclick="ClockToWork(false)">Clock Out</button>
+</center>
 <script src="ClockToWork.js"></script>
 <%- include("PageBottom.ejs") %>
