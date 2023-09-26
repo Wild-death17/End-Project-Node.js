@@ -3,11 +3,12 @@ const router = express.Router();
 module.exports = router;
 //------------------------------------------------
 router.post('/Clock_in', (req, res) => {
-    let {Employee_Id, CurrentTime} = req.body;
-    let Query = `INSERT INTO work_hours (Employee_Id,Employee_Name, Clock_in) VALUES`;
+    let {Employee_Id} = req.body;
+    let Query = `INSERT INTO work_hours (Employee_Id,Employee_Name,Date_in, Clock_in) VALUES`;
     Query += `(${Employee_Id},`;
     Query += `(SELECT concat(FirstName, ' ', LastName) As 'Employee_Name' FROM employees WHERE Employee_Id = ${Employee_Id}),`;
-    Query += `'${CurrentTime}')`;
+    Query += `CURRENT_DATE(),`;
+    Query += `CURRENT_TIMESTAMP)`;
     DataBase_Pool.query(Query, (err, rows) => {
         if (err)
             res.status(500).json({message: err});// throw err;
@@ -17,9 +18,10 @@ router.post('/Clock_in', (req, res) => {
 })
 //------------------------------------------------
 router.post('/Clock_out', (req, res) => {
-    let {Employee_Id, CurrentTime} = req.body;
+    let {Employee_Id} = req.body;
     let Query = `UPDATE work_hours `;
-    Query += `SET Clock_out = '${CurrentTime}' `;
+    Query += `SET Clock_out = CURRENT_TIMESTAMP, `;
+    Query += `Date_out =  CURRENT_DATE()`;
     Query += `WHERE Clock_out IS NULL AND `;
     Query += `Employee_Id = ${Employee_Id}`;
     DataBase_Pool.query(Query, (err) => {

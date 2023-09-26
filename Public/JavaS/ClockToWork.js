@@ -1,9 +1,9 @@
 GetEmployees();
+document.getElementById('date').innerHTML = new Date().toLocaleDateString();
 
 async function GetEmployees() {
     let res = await fetch('/Employees/Read', {method: 'POST'});
     let data = await res.json();
-    console.log('data', data.rows);
     let str = '';
     for (let row of data.rows)
         str += `<option value="${row.Employee_Id}">${row.FirstName} ${row.LastName}</option>`;
@@ -18,11 +18,10 @@ setInterval(() => {
 async function ClockToWork(isClockingIn) {
     let Employee_Id = document.getElementById('Employee_Id').value;
     if (Employee_Id === '0') return;
-    let CurrentTime = document.getElementById("clock").innerHTML;
     let JS = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({"Employee_Id": Employee_Id, "CurrentTime": CurrentTime})
+        body: JSON.stringify({"Employee_Id": Employee_Id})
     }
     if (isClockingIn)
         await fetch('/Work_Hours/Clock_in', JS);
