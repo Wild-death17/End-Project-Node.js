@@ -12,7 +12,7 @@ async function AddLine() {
     let LastName = document.getElementById("LastName").value;
     if (FirstName === "") return alert("Please Enter FirstName");
     if (LastName === "") return alert("Please Enter LastName");
-    let res = await fetch('/Employees/Create', {
+    await fetch('/Employees/Create', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({"FirstName": FirstName, "LastName": LastName})
@@ -29,7 +29,7 @@ async function EditLine() {
     if (Employee_Id === 0) return alert("Please Enter Employee_Id");
     if (category === 0) return alert("Please Enter category");
     if (replacement === "") return alert("Please Enter replacement");
-    let res = await fetch('/Employees/Update', {
+    await fetch('/Employees/Update', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({"id": Employee_Id, "category": category, "replacement": replacement})
@@ -39,7 +39,7 @@ async function EditLine() {
 }
 
 async function DeleteLine(id) {
-    let res = await fetch(`/Employees/Delete/${id}`, {method: 'POST'});
+    await fetch(`/Employees/Delete/${id}`, {method: 'POST'});
     GetEmployees().then(CreateTable);
 }
 
