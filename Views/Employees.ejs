@@ -1,0 +1,38 @@
+<%- include("PageTop.ejs") %>
+<center>
+    <h1>Hello World!</h1>
+    <br>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Employee_Id</td>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <div id="AddContainer">
+        <input id="FirstName" placeholder="First Name" type="text"> <br>
+        <input id="LastName" placeholder="Last Name" type="text"> <br>
+        <input type="button" value="AddLine" onclick="AddLine()">
+    </div>
+    <br>
+    <div id="UpdateContainer">
+        <Select id="Employee_Id">
+        </Select><br>
+        <Select id="category">
+            <option selected disabled value="0">Select category</option>
+            <option value="FirstName">FirstName</option>
+            <option value="LastName">LastName</option>
+        </Select><br>
+        <input id="replacement" placeholder="Enter Replacement" type="text"> <br>
+        <input type="button" value="EditLine" onclick="EditLine()">
+    </div>
+</center>
+<script src="./JavaS/Employees.js"></script>
+<%- include("PageBottom.ejs") %>
+

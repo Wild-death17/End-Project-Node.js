@@ -13,13 +13,11 @@ app.use(express.static(path.join(__dirname, 'Routs')));
 //------------------------------------------------
 app.use(express.static(path.join(__dirname, 'Views')));
 //------------------------------------------------
-app.use(express.static(path.join(__dirname, 'Public/Css')));
-//------------------------------------------------
-app.use(express.static(path.join(__dirname, 'Public/JavaS')));
+app.use(express.static(path.join(__dirname, 'Public')));
 //------------------------------------------------
 app.use(express.static(path.join(__dirname, 'Data-Base-SQL')));
 //------------------------------------------------
-let DataBase_Model = require("./Data-Base-SQL/Data-Base");
+let DataBase_Model = require('./Data-Base-SQL/Data-Base');
 global.DataBase_Pool = DataBase_Model.pool;
 //------------------------------------------------
 const Page_rt = require('./Routs/Pages');
@@ -33,6 +31,8 @@ app.use('/Work_Hours', Work_Hours_rt);
 //------------------------------------------------
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);
+    console.log(`http://localhost:${port}/Employees`);
+    console.log(`http://localhost:${port}/WorkingHours`);
     console.log(__dirname);
 });
 //------------------------------------------------
