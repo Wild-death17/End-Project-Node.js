@@ -24,10 +24,10 @@ async function AddLine() {
 
 async function EditLine() {
     let Employee_Id = document.getElementById("Employee_Id").value;
+    if (Employee_Id === "") return alert("Please Select Employee Id");
     let category = document.getElementById("category").value;
+    if (category === "") return alert("Please Select category");
     let replacement = document.getElementById("replacement").value;
-    if (Employee_Id === 0) return alert("Please Enter Employee_Id");
-    if (category === 0) return alert("Please Enter category");
     if (replacement === "") return alert("Please Enter replacement");
     await fetch('/Employees/Update', {
         method: 'POST',
@@ -45,7 +45,7 @@ async function DeleteLine(id) {
 
 function CreateTable() {
     let str = '';
-    let optStr = '<option selected disabled value="0">Select Employee_Id</option>';
+    let optStr = '<option selected disabled value="">Select Employee_Id</option>';
     for (let row of ServerData) {
         optStr += `<option value="${row.Employee_Id}">${row.Employee_Id}</option>`;
         str += `<tr>`;
