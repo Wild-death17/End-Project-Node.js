@@ -4,11 +4,16 @@ module.exports = router;
 //------------------------------------------------
 router.post('/Clock_in', (req, res) => {
     let {Employee_Id} = req.body;
-    let Query = `INSERT INTO work_hours (Employee_Id,Employee_Name,Date_in, Clock_in) VALUES`;
-    Query += `(${Employee_Id},`;
-    Query += `(SELECT concat(FirstName, ' ', LastName) As 'Employee_Name' FROM employees WHERE Employee_Id = ${Employee_Id}),`;
+    let Query = `INSERT INTO work_hours (Employee_Id,Employee_Name,Date_in, Clock_in)`;
+    Query += `SELECT `;
+    Query += `${Employee_Id},`;
+    Query += `concat(FirstName, ' ', LastName) As 'Employee_Name',`;
     Query += `CURRENT_DATE(),`;
-    Query += `CURRENT_TIMESTAMP)`;
+    Query += `CURRENT_TIMESTAMP `;
+    Query += `FROM employees `;
+    Query += `WHERE Employee_Id = ${Employee_Id} AND `;
+    Query += `NOT EXISTS (SELECT * FROM work_hours WHERE `;
+    Query += `Employee_Id = ${Employee_Id} AND Clock_out IS NULL)`;
     DataBase_Pool.query(Query, (err, rows) => {
         if (err)
             res.status(500).json({message: err});// throw err;

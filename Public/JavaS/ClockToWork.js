@@ -23,8 +23,18 @@ async function ClockToWork(isClockingIn) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({"Employee_Id": Employee_Id})
     }
-    if (isClockingIn)
-        await fetch('/Work_Hours/Clock_in', JS);
-    else
+    if (isClockingIn) {
+        let res = await fetch('/Work_Hours/Clock_in', JS);
+        let json = await res.json();
+        AlertStatus((json.lastId === 0));
+    } else {
         await fetch('/Work_Hours/Clock_out', JS);
+        return alert("Clocked Out!");
+    }
 }
+
+function AlertStatus(bool) {
+    if (bool) return alert("You Are Already Clocked In!");
+    return alert("Clocked In!");
+}
+
