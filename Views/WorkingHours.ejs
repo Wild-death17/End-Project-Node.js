@@ -1,0 +1,29 @@
+<%- include("PageTop.ejs") %>
+<center>
+    <h1>Hello World!</h1>
+    <br>
+    <select onchange="CreateTable()" id="Employee_Name">
+        <option disabled selected value=""> Select Employee</option>
+        <option value="">All Employees</option>
+    </select>
+    <br><br>
+    <table>
+        <thead>
+        <tr>
+            <td> Shift_Id</td>
+            <td> Emp_Id</td>
+            <td> Employee_Name</td>
+            <td> Date_in</td>
+            <td> Clock_in</td>
+            <td> Clock_out</td>
+            <td> Date_out</td>
+            <td> Delete</td>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+</center>
+<script src="./JavaS/WorkingHours.js"></script>
+<%- include("PageBottom.ejs") %>
+
