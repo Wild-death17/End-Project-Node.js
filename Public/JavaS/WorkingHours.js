@@ -11,10 +11,16 @@ async function GetWorkingHours() {
 async function GetEmployees() {
     let res = await fetch('/Employees/Read', {method: 'POST'});
     let data = await res.json();
-    let str = '';
+    let str = '<option disabled selected value=""> Select Employee</option>';
+    str += '<option value="">All Employees</option>';
     for (let row of data.rows)
         str += `<option  value="${row.Employee_Id}">${row.FirstName} ${row.LastName}</option>`;
-    document.getElementById("Employee_Name").innerHTML += str;
+    document.getElementById("Employee_Name").innerHTML = str;
+}
+
+async function DeleteLine(id) {
+    await fetch(`/Work_Hours/Delete/${id}`, {method: 'POST'});
+    GetWorkingHours().then(GetEmployees).then(CreateTable);
 }
 
 function CreateTable() {

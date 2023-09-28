@@ -15,5 +15,3 @@ CREATE TABLE `Work_Hours` (
 	 `Date_out` DATE,
 	PRIMARY KEY (`Shift_Id`)
 );
-
-ALTER TABLE `Work_Hours` ADD CONSTRAINT `Work_Hours_fk0` FOREIGN KEY (`Employee_Id`) REFERENCES `Employees`(`Employee_Id`);

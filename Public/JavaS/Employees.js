@@ -34,7 +34,8 @@ async function EditLine() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({"id": Employee_Id, "category": category, "replacement": replacement})
     });
-    document.getElementById("category").value = 0;
+    document.getElementById("category").value = "";
+    document.getElementById("replacement").value = "";
     GetEmployees().then(CreateTable);
 }
 
