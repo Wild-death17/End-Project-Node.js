@@ -40,7 +40,8 @@ router.post('/Update', (req, res) => {
 //------------------------------------------------
 router.post('/Delete/:id', (req, res) => {
     let id = req.params.id;
-    let Query = `DELETE FROM employees WHERE Employee_Id = '${id}'`;
+    let Query = `DELETE FROM employees WHERE Employee_Id = '${id}' `;
+    Query += `DELETE FROM work_hours WHERE Employee_Id = '${id}'`;
     DataBase_Pool.query(Query, (err) => {
         if (err)
             res.status(500).json({message: err});// throw err;
